@@ -5,6 +5,45 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 
+		watch: {
+			all: {
+				files: 'app/**/*',
+				tasks: ['newer:copy:all','newer:babel:all']
+			},
+			options: {
+				atBegin: true,
+				spawn: false
+			}
+		},
+
+		babel: {
+			options: {
+				externalHelpers: true,
+				sourceMap: 'inline',
+				modules: 'babel-ui5-module-formatter'
+			},
+			all: {
+				files: [{
+					expand: true,
+					cwd: 'app/',
+					src: ['**/*.js'],
+					dest: '<%= dir.dist %>'
+				}]
+			}
+		},
+
+		copy: {
+			all: {
+				files: [{
+					expand: true,
+					cwd: 'app/',
+					src: ['**/*', '!**/*.js'],
+					dest: 'dist/'
+				}]
+
+			}
+		},
+
 		dir: {
 			webapp: 'app',
 			tests: 'test',
@@ -88,10 +127,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-openui5');
 	grunt.loadNpmTasks('grunt-eslint');
 	grunt.loadNpmTasks('grunt-contrib-qunit');
+	grunt.loadNpmTasks('grunt-babel');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-newer');
 
 	// Server task
 	grunt.registerTask('serve', function(target) {
-		grunt.task.run('openui5_connect:' + (target || 'src') + ':keepalive');
+		grunt.task.run(['openui5_connect:' + (target || 'src'), 'watch']);
 	});
 
 	// Linting task
