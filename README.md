@@ -1,9 +1,29 @@
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!    The md-template app is EXPERIMENTAL, do not use this code productively    !!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+babel-ui5-module-example
+=======================
 
-This app will become a best practice implementation of the Master-Detail design pattern in UI5.
-It is currently work in progress and may be changed or deleted at any time without further notice.
+This app is an example of using ES6 modules (and ES6 classes) in UI5. It makes use of the [babel](https://babeljs.io) transpiler and [babel-ui5-module-formatter](https://github.com/geekflyer/babel-ui5-module-formatter) to transform ES6 syntax to plain UI5 modules and ES5 syntax. It's a port of https://github.com/TobiasOetzel/mdSkeleton.
 
-See our compatibility rules for more information:
-https://openui5.hana.ondemand.com/#docs/guide/91f087396f4d1014b6dd926db0e91070.html#experimental
+**Note: This is an unofficial example in alpha / experimental state. Beware of using it for production right away. Contributions to make it ready for production are welcome!**
+
+
+### How to use it?
+
+1. Clone the repository `git clone https://github.com/geekflyer/babel-ui5-module-example.git`
+2. run `npm install`
+3. run `bower install`
+4. start the app via the grunt task `grunt serve`
+5. open your browser and point to `http://localhost:8080/test.html`. 
+
+The `grunt serve` task starts a `connect` webserver and transpiles the ES6 files in the `app` directory into ES5 / UI5 syntax. The transpiled files can be found under `dist`. The transpilation is incremental, hence only changed sources are being transpiled.
+
+### Limitations
+
+- Unit / OPA Tests and test task configuration is not ready for ES6 yet.
+- Only the `test.html` can be used as entry point. When opening the app via any of the other entry points (html files) it won't work yet.
+- Only the `grunt serve` task is known to work atm. The other grunt tasks (e.g. qunit) likely won't work as expected.
+
+Also have a look at [babel-ui5-module-formatter's](https://github.com/geekflyer/babel-ui5-module-formatter) limitations.
+
+### License
+
+Apache 2.0 © [Christian Theilemann](https://github.com/geekflyer)
