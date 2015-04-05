@@ -1,19 +1,18 @@
 {
-  "name": "md-template",
-  "version": "1.0.0",
-  "description": "MD-template",
-  "private": true,
+  "name": "babel-ui-module-example",
+  "version": "0.0.1",
+  "description": "babel-ui-module-example",
   "scripts": {
     "test": "grunt"
   },
   "keywords": [],
-  "author": "SAP SE",
+  "author": "Christian Theilemann",
   "contributors": [
-    "SAP SE <*@sap.com>"
+    "Christian Theilemann <christian.theilemann@sap.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.wdf.sap.corp/D060613/mdSkeleton"
+    "url": "https://github.com/geekflyer/babel-ui-module-example"
   },
   "dependencies": {
     "babel-core": "^5.0.8"

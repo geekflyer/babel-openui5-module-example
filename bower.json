@@ -1,13 +1,13 @@
 {
-  "name": "md-template",
-  "version": "0.0.0",
+  "name": "babel-ui-module-example",
+  "version": "0.0.1",
   "authors": [
-    "SAP SE"
+    "Christian Theilemann <christian.theilemann@sap.com>"
   ],
-  "description": "md-template",
+  "description": "babel-ui-module-example",
   "main": "webapp/index.html",
   "keywords": [
-    "md-template"
+    "babel-ui-module-example"
   ],
   "license": "MIT",
   "private": true,
