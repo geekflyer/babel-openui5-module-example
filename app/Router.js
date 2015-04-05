@@ -1,14 +1,7 @@
-sap.ui.define([
-    "sap/m/routing/Router"
-], function (Router) {
-    "use strict";
+import Router from "sap/m/routing/Router";
 
-    return Router.extend("sap.ui.demo.mdtemplate.Router", {
-
-        constructor: function () {
-            sap.m.routing.Router.apply(this, arguments);
-        }
-
-    });
-
-}, /* bExport= */ true);
+export default class extends Router {
+    constructor() {
+        super(arguments);
+    }
+}
