@@ -1,7 +1,7 @@
 {
-  "name": "babel-ui-module-example",
   "version": "0.0.1",
-  "description": "babel-ui-module-example",
+  "name": "babel-openui5-module-example",
+  "description": "babel-openui5-module-example",
   "scripts": {
     "test": "grunt"
   },
@@ -12,13 +12,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/geekflyer/babel-ui-module-example"
+    "url": "https://github.com/geekflyer/babel-openui5-module-example"
   },
   "dependencies": {
     "babel-core": "^5.0.8"
   },
   "devDependencies": {
-    "babel-ui5-module-formatter": "0.0.1",
+    "babel-openui5-module-formatter": "0.0.2",
     "eslint-plugin-openui5": "0.1.0",
     "grunt": "^0.4.5",
     "grunt-babel": "^5.0.0",
