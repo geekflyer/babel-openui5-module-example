@@ -195,8 +195,7 @@ export default class Master extends BaseController {
      */
     onConfirmViewSettingsDialog(oEvent) {
         var aFilterItems = oEvent.getParameters().filterItems,
-            aFilters = [],
-            aCaptions = [];
+            aFilters = [];
 
         // update filter state:
         // combine the filter array and the filter string
@@ -209,11 +208,10 @@ export default class Master extends BaseController {
                     aFilters.push(new sap.ui.model.Filter("UnitNumber", sap.ui.model.FilterOperator.GT, 100));
                     break;
             }
-            aCaptions.push(oItem.getText());
         });
         this._oListFilterState.aFilter = aFilters;
 
-        this._updateFilterBar(aCaptions.join(", "));
+        this._updateFilterBar(aFilterItems.map(oItem => oItem.getText()).join(", "));
         this._applyFilterSearch();
     }
 

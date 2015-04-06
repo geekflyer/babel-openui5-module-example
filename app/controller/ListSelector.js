@@ -92,8 +92,6 @@ export default class ListSelector {
      */
     clearMasterListSelection() {
         //use promise to make sure that 'this._oList' is available
-        this._oWhenListHasBeenSet.then(function () {
-            this._oList.removeSelections(true);
-        }.bind(this));
+        this._oWhenListHasBeenSet.then(this._oList.removeSelections.bind(this, true));
     }
 }

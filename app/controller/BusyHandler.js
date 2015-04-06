@@ -11,12 +11,10 @@ export default class BusyHandler {
         this._oComponent = oComponent;
         // set the busy indication on application level, because unless the metadata is loaded
         // the user cannot interact with the application
-        this._oComponent.oWhenMetadataIsLoaded.then(function () {
-                this._setRootViewInitiallyBusy(false);
-            }.bind(this),
-            function () {
-                this._setRootViewInitiallyBusy(false);
-            }.bind(this));
+        this._oComponent.oWhenMetadataIsLoaded.then(
+            this._setRootViewInitiallyBusy.bind(this,false),
+            this._setRootViewInitiallyBusy.bind(this,false)
+        );
         this._setRootViewInitiallyBusy(true);
     }
 
