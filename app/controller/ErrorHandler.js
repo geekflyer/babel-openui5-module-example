@@ -17,30 +17,29 @@ export default class ErrorHandler {
         this._bMessageOpen = false;
         this._sCompactModeClass = sap.ui.Device.support.touch ? "" : "sapUiSizeCompact"; // compact mode for the MessageBoxes on non-touch devices
 
-        this._oModel.attachEvent("metadataFailed", function (oEvent) {
-            var oParams = oEvent.getParameters();
-
-            this._showMetadataError(
-                oParams.statusCode + " (" + oParams.statusText + ")\r\n" +
-                oParams.message + "\r\n" +
-                oParams.responseText + "\r\n"
-            );
-        }, this);
+        this._oModel.attachEvent(
+                "metadataFailed",
+                oEvent => this._showMetadataError(this.constructor._constructErrorMessageFromResponse(oEvent.getParameters())),
+                this
+        );
 
         this._oModel.attachEvent("requestFailed", function (oEvent) {
-            var oParams = oEvent.getParameters();
+            var response = oEvent.getParameters().response;
 
             // An entity that was not found in the service is also throwing a 404 error in oData.
             // We already cover this case with a notFound target so we skip it here.
             // A request that cannot be sent to the server is a technical error that we have to handle though
-            if (oParams.response.statusCode != "404" || (oParams.response.statusCode === 404 && oParams.response.responseText.indexOf("Cannot POST") === 0)) {
-                this._showServiceError(
-                    oParams.response.statusCode + " (" + oParams.response.statusText + ")\r\n" +
-                    oParams.response.message + "\r\n" +
-                    oParams.response.responseText + "\r\n"
-                );
+            if (response.statusCode != "404" || (response.statusCode === 404 && response.responseText.indexOf("Cannot POST") === 0)) {
+                this._showServiceError(this.constructor._constructErrorMessageFromResponse(response));
             }
         }, this);
+    }
+
+    static _constructErrorMessageFromResponse(oResponse) {
+        return `${oResponse.statusCode} (${oResponse.statusText})
+                ${oResponse.message}
+                ${oResponse.responseText}
+                `
     }
 
     /**

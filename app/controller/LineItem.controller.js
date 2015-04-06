@@ -76,7 +76,7 @@ export default class LineItemController extends BaseController {
             this._oObject = {};
             this._oObject.sObjectId = oParameters.arguments.objectId;
         }
-        this._sObjectPath = "/Objects('" + this._oObject.sObjectId + "')";
+        this._sObjectPath = `/Objects('${this._oObject.sObjectId}')`;
         this._sLineItemId = oParameters.arguments.lineItemId;
 
         this._bindView();
@@ -126,7 +126,7 @@ export default class LineItemController extends BaseController {
         // now, we need to make sure that the elements in our view show us the data from the particular line item in
         // the model. As the view has been bound to the object instead, we now need to bind the container element within the view (in our
         // case, the page) to the particular line item.
-        var sItemPath = "/LineItems('" + this._sLineItemId + "')",
+        var sItemPath = `/LineItems('${this._sLineItemId}')`,
             oLineItemPage = this.byId("lineItemPage"),
             oView = this.getView();
 
@@ -154,7 +154,7 @@ export default class LineItemController extends BaseController {
     _populateLineItems() {
         if (!this._oObject.aLineItemIds) {
             this._oObject.aLineItemIds = [];
-            var aIds = this.getView().getModel().getObject("/Objects('" + this._oObject.sObjectId + "')/LineItems"),
+            var aIds = this.getView().getModel().getObject(`/Objects('${this._oObject.sObjectId}')/LineItems`),
                 oRegExLineItemId = new RegExp("LineItemID_[0-9]*");
             aIds.forEach(function (sId, iIndex) {
                 // retrieve all line items and cache them in a private array
